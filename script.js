@@ -1,6 +1,10 @@
 document.getElementById("search-btn").addEventListener("click",function(){
     const city = document.getElementById("city-input").value
-
+if(city===""){
+ document.getElementById("city-input").innerHTML='<p class="error">"Enter a valid city name"</p>'
+ document.getElementById("city-input").style.display="block"
+ return
+}
 const apiKey = "276ee47d0d4791e31b6aff8cdadf9d31"
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
 
@@ -43,4 +47,10 @@ fetch(url)
   document.getElementById("weather-result").innerHTML = weatherHTML
   document.getElementById("weather-result").style.display = "block"
 })
+
+  })
+  document.getElementById("city-input").addEventListener("keypress",function(event){
+    if(event.key === "Enter"){
+      document.getElementById("search-btn").click()
+    }
   })
